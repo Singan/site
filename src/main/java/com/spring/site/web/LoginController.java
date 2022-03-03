@@ -39,24 +39,24 @@ public class LoginController {
         return "loginForm";
     }
 
-    @PostMapping("/login")
-    public String login(Member member) throws Exception {
-        Member loginSecurity = memberService.oneSelect(member);
-//        System.out.println("토큰 확인용");
-//        String token = jwtToken.createToken(loginSecurity.getId(), loginSecurity.getRole());
-//        response.setHeader("token",token);
-//        Cookie cookie = new Cookie("token", token);
-//        cookie.setPath("/");
-//        cookie.setHttpOnly(true);
-//        cookie.setSecure(true);
-//        cookie.setMaxAge(1000 * 60 * 60);
-//        response.addCookie(cookie);
+//    @PostMapping("/login")
+//    public String login(Member member) throws Exception {
+//        Member loginSecurity = memberService.oneSelect(member);
+////        System.out.println("토큰 확인용");
+////        String token = jwtToken.createToken(loginSecurity.getId(), loginSecurity.getRole());
+////        response.setHeader("token",token);
+////        Cookie cookie = new Cookie("token", token);
+////        cookie.setPath("/");
+////        cookie.setHttpOnly(true);
+////        cookie.setSecure(true);
+////        cookie.setMaxAge(1000 * 60 * 60);
+////        response.addCookie(cookie);
+////
+////        System.out.println(token);
+////        System.out.println(cookie);
 //
-//        System.out.println(token);
-//        System.out.println(cookie);
-
-        return "/home";
-    }
+//        return "/home";
+//    }
 
 
     @GetMapping("/add")

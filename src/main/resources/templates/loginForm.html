@@ -22,8 +22,27 @@
         <button onClick="loginCustom_ajax()" class="btn btn-primary">Submit</button>
         <button type="button" class="btn btn-primary" onClick="location.href='/add'">회원 가입</button>
     </form>
-
+    <div class="checkbox mb-3">
+        <label>
+            <input name="remember-me" id="rememberMe" type="checkbox" th:checked="${rememeberMe}"> Remember me
+        </label>
+    </div>
 </div>
 
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/js/js.cookie.min.js"></script>
+<script>
+    $("#rememberMe").click(function () {
+        if ($("input:checkbox[id='rememberMe']").is(":checked")) {
+            Cookies.set("rememberMe", true);
+        } else {
+            Cookies.set("rememberMe", false);
+        }
+        alert("rememberMe")
+    })
+    if (Cookies.get("rememberMe") === 'true') {
+        $("input:checkbox[id='rememberMe']").prop("checked", true);
+    }
+</script>
 </body>
 </html>

@@ -25,7 +25,6 @@ public class Member {
     @Size(min = 2, max = 8, message = "이름을 2~8자 사이로 입력해주세요.")
     private String name;
     private String role = "ROLE_ADMIN";
-    private List<String> roles = new ArrayList<>();
 
     public int getNo() {
         return no;
@@ -65,13 +64,6 @@ public class Member {
         this.role = role;
     }
 
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
-    }
 
     @Override
     public String toString() {
@@ -81,17 +73,15 @@ public class Member {
                 ", pw='" + pw + '\'' +
                 ", name='" + name + '\'' +
                 ", role='" + role + '\'' +
-                ", roles=" + roles +
                 '}';
     }
 
-    public Member(int no, String id, String pw, String name, String role, List<String> roles) {
+    public Member(int no, String id, String pw, String name, String role) {
         this.no = no;
         this.id = id;
         this.pw = pw;
         this.name = name;
         this.role = role;
-        this.roles = roles;
     }
 
 

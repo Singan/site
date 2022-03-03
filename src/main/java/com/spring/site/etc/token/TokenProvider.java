@@ -30,12 +30,10 @@ public class TokenProvider {
     private LoginSecurityService loginSecurityService;
 
     // 토큰 생성
-    public String createToken(String member, String role) {
-        Claims claims = Jwts.claims().setSubject(member); // JWT payload 에 저장되는 정보단위
-        claims.put("roles", role); // 정보는 key / value 쌍으로 저장된다.
+    public String createToken(Authentication authentication) {
+        Claims claims = Jwts.claims().setSubject(String.valueOf(authentication.getPrincipal())); // JWT payload 에 저장되는 정보단위
+        claims.put("roles", authentication.getAuthorities()); // 정보는 key / value 쌍으로 저장된다.
         Date now = new Date();
-        System.out.println("member "+member);
-        System.out.println("member role"+role);
         return Jwts.builder()
                 .setClaims(claims) // 정보 저장
                 .setIssuedAt(now) // 토큰 발행 시간 정보
@@ -58,12 +56,12 @@ public class TokenProvider {
     }
 
     public String resolveToken(HttpServletRequest request) {
-        Enumeration headerNames = request.getHeaderNames();
-        while(headerNames.hasMoreElements()) {
-            String name = (String)headerNames.nextElement();
-            String value = request.getHeader(name);
-            System.out.println(name + " : " + value + "<br>");
-        }
+//        Enumeration headerNames = request.getHeaderNames();
+//        while(headerNames.hasMoreElements()) {
+//            String name = (String)headerNames.nextElement();
+//            String value = request.getHeader(name);
+//            System.out.println(name + " : " + value + "<br>");
+//        }
         System.out.println("헤더전체");
         System.out.println("request:"+request.getHeader("cookie"));
 
@@ -80,17 +78,17 @@ public class TokenProvider {
             Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return true;
         } catch (SignatureException e) {
-            System.out.println("Invalid JWT signature");
+            System.out.println("jwt 서명 확인 x");
         } catch (MalformedJwtException e) {
-            System.out.println("Invalid JWT token");
+            System.out.println("jwt 올바르게 구성 x");
         } catch (ExpiredJwtException e) {
-            System.out.println("JWT token is expired");
+            System.out.println("jwt 기간 종료");
         } catch (UnsupportedJwtException e) {
-            System.out.println("JWT token is unsupported");
+            System.out.println("jwt 형식이 다름");
         } catch (IllegalArgumentException e) {
-            System.out.println("JWT claims string is empty");
+            System.out.println("jwt 내용이 비었음");
         } catch (NullPointerException e) {
-            System.out.println("token null");
+            System.out.println("jwt null");
         }
         return false;
     }
