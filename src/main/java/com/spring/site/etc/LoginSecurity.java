@@ -36,7 +36,6 @@ public class LoginSecurity implements UserDetails {
     //유저 권한 리턴
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        System.out.println("GrantedAuthority");
         Collection<GrantedAuthority> collect = new ArrayList<>();
         collect.add(new GrantedAuthority() {
             @Override
