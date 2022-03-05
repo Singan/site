@@ -24,12 +24,12 @@ public class LoginSecurityService implements UserDetailsService {
         member.setId(id);
         member = MemberMapper.selectOne(member);
         System.out.println("memberService.oneSelect(member" + MemberMapper.selectOne(member).toString());
+
         if(member !=null){
             System.out.println(id);
             System.out.println("로그인 성공");
             System.out.println(member);
             return new LoginSecurity(member);
-
         }
 
         return null;
