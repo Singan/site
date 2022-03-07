@@ -75,7 +75,7 @@ public class LoginController {
         System.out.println(token);
         System.out.println(cookie);
 
-        return "/home";
+        return "redirect:/home";
     }
 
 
