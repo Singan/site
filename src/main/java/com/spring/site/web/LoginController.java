@@ -22,11 +22,11 @@ import java.net.http.HttpResponse;
 
 @Controller
 public class LoginController {
+
     @Autowired
     ServletContext sc;
     @Autowired
     MemberService memberService;
-
 
 
     @GetMapping("/loginForm")

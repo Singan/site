@@ -18,5 +18,4 @@ public class Board {
     private String file;
     private int writer;
     private Date date;
-
 }
