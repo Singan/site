@@ -1,10 +1,16 @@
 package com.spring.site.web;
 
 import com.spring.site.domain.Member;
+import com.spring.site.etc.LoginSecurity;
+import com.spring.site.etc.LoginSecurityService;
 import com.spring.site.etc.token.TokenProvider;
 import com.spring.site.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +33,12 @@ public class LoginController {
     ServletContext sc;
     @Autowired
     MemberService memberService;
+    @Autowired
+    TokenProvider tokenProvider;
+    @Autowired
+    AuthenticationManager authenticationManager;
+    @Autowired
+    LoginSecurityService loginSecurityService;
 
 
     @GetMapping("/loginForm")
@@ -39,24 +51,32 @@ public class LoginController {
         return "loginForm";
     }
 
-//    @PostMapping("/login")
-//    public String login(Member member) throws Exception {
-//        Member loginSecurity = memberService.oneSelect(member);
-////        System.out.println("토큰 확인용");
-////        String token = jwtToken.createToken(loginSecurity.getId(), loginSecurity.getRole());
-////        response.setHeader("token",token);
-////        Cookie cookie = new Cookie("token", token);
-////        cookie.setPath("/");
-////        cookie.setHttpOnly(true);
-////        cookie.setSecure(true);
-////        cookie.setMaxAge(1000 * 60 * 60);
-////        response.addCookie(cookie);
-////
-////        System.out.println(token);
-////        System.out.println(cookie);
-//
-//        return "/home";
-//    }
+    @PostMapping("/login")
+    public String login(Member member, HttpServletResponse response) throws Exception {
+
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(member.getId(), member.getPw())
+        );
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
+        UserDetails userDetails = loginSecurityService.loadUserByUsername(member.getId());
+
+        System.out.println("토큰 확인용");
+        String token = tokenProvider.createToken(userDetails );
+        response.setHeader("token",token);
+        Cookie cookie = new Cookie("token", token);
+        cookie.setPath("/");
+        cookie.setHttpOnly(true);
+        cookie.setSecure(true);
+        cookie.setMaxAge(1000 * 60 * 60);
+        response.addCookie(cookie);
+
+        System.out.println(token);
+        System.out.println(cookie);
+
+        return "/home";
+    }
 
 
     @GetMapping("/add")
