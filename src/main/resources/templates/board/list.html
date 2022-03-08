@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+    <header>
+        <h1>회원 목록</h1>
+    </header>
+    <div>
+        <table class="table-hover">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>아이디</th>
+                <th>비밀번호</th>
+                <th>이름</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board : ${list}">
+                <td th:text="${board.no}"></td>
+                <td th:text="${board.title}"></td>
+                <td th:text="${board.date}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div> <!-- /container -->
+</body>
+</html>
