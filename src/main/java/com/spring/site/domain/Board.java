@@ -1,21 +1,20 @@
 package com.spring.site.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
 
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
+@NoArgsConstructor
 public class Board {
     private int no;
     private String title;
     private String content;
     private String file;
     private int writer;
-    private Date date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private String date;
 }
