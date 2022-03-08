@@ -26,7 +26,6 @@ public class MemberController {
     @Autowired
     ServletContext sc;
 
-
     @GetMapping("/list")
     public String list(Model model) throws Exception {
         List<Member> list = memberService.list();
