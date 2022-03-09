@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <div>
-    <form action="/myPage" method="post" th:object="${member}">
+    <form action="/myPage"  th:object="${member}">
         <h1>내 정보 수정</h1>
 
         <div class="form-group">
@@ -17,12 +17,12 @@
 
         <div class="form-group">
             <label th:for="pw">비밀번호</label>
-            <input type="text" class="form-control" th:field="*{pw}">
+            <input type="text" class="form-control" th:field="*{member.pw}">
         </div>
 
         <div class="form-group">
             <label th:for="name">이름</label>
-            <input type="text" class="form-control" th:field="*{name}">
+            <input type="text" class="form-control" th:field="*{member.name}">
         </div>
 
         <button type="submit" class="btn btn-primary">수정</button>

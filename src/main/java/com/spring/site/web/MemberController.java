@@ -2,6 +2,7 @@ package com.spring.site.web;
 
 
 import com.spring.site.domain.Member;
+import com.spring.site.etc.LoginSecurity;
 import com.spring.site.etc.LoginSecurityService;
 import com.spring.site.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,13 +43,10 @@ public class MemberController {
     }
 
     @GetMapping("/myPage")
-        public String myPage(Model model, @AuthenticationPrincipal Principal principal) {
-        Member member = new Member();
-//        member.setName(principal.getName());
-        model.addAttribute("member", member.getId());
-        model.addAttribute("member", member);
-
-            return "member/myPage";
+        public String myPage(Authentication authentication, Model model) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        model.addAttribute("member", userDetails);
+        return "/member/myPage";
         }
 
 //    @PostMapping("/myPage")
