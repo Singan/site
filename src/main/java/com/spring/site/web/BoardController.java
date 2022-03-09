@@ -2,9 +2,11 @@ package com.spring.site.web;
 
 import com.spring.site.domain.Board;
 import com.spring.site.domain.Member;
+import com.spring.site.etc.LoginSecurity;
 import com.spring.site.service.BoardService;
 import com.spring.site.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,11 +38,12 @@ public class BoardController {
     // board writer , title,file , date,content
     @PostMapping("/insert.do")
     public String insert(Board board) throws Exception  {
+        LoginSecurity log = (LoginSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Board inBoard = new Board();
-
+        Member member = log.getMember();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate lDate = LocalDate.now();
-        inBoard.setWriter(11);
+        inBoard.setWriter(member.getNo());
         inBoard.setTitle(board.getTitle());
         inBoard.setContent(board.getFile());
         inBoard.setContent(board.getContent());
@@ -52,6 +55,7 @@ public class BoardController {
     }
     @GetMapping("/insert.do")
     public String goInsert(Model model) {
+
         model.addAttribute("board", new Board());
         return "/board/insert";
     }
