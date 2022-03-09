@@ -12,12 +12,12 @@ import java.util.List;
 public interface BoardMapper {
 
     @Options(useGeneratedKeys = true, keyProperty = "no")
-    @Insert("INSERT INTO  member(id, pw, name) VALUES(#{id}, #{pw},#{name})")
+    @Insert("INSERT INTO board(title,content,writer,date,file) VALUES(#{title}, #{content},#{writer},#{date},#{file})")
     int insert(Board board) throws Exception;
     @Select("SELECT * FROM board")
     List<Board> list() throws Exception;
-    @Select("SELECT * FROM board where id = #{id}")
-    Member selectOne(Board userId);
+    @Select("SELECT * FROM board where writer = #{id}")
+    List<Board> searchList(Member member);
 
 
 }
