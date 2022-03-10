@@ -16,10 +16,9 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(HttpServletRequest request, HttpServletResponse response) {
-
         return "home";
     }
-    @PostMapping("tokenCheck.do")
+    @PostMapping("tokenCheck")
     @ResponseBody
     public String tokenCheck(){
         System.out.println("토큰체크 컨트롤러");
