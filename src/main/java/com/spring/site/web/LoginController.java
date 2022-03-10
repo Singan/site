@@ -56,15 +56,14 @@ public class LoginController {
 
         // 인증
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(member.getId(), member.getPw())
-        );
+                new UsernamePasswordAuthenticationToken(member.getId(), member.getPw()));
         // 저장
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // 정보 빼오기
         UserDetails userDetails = loginSecurityService.loadUserByUsername(member.getId());
         System.out.println(loginSecurityService.loadUserByUsername(member.getId()));
-
+        System.out.println(SecurityContextHolder.getContext().getAuthentication());
         System.out.println("토큰 확인용");
         String token = tokenProvider.createToken(userDetails);
         response.setHeader("token",token);

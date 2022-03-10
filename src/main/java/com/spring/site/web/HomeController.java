@@ -23,6 +23,7 @@ public class HomeController {
     @ResponseBody
     public String tokenCheck(){
         System.out.println("토큰체크 컨트롤러");
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "home";
     }
 }

@@ -2,8 +2,15 @@ package com.spring.site.web;
 
 
 import com.spring.site.domain.Member;
+import com.spring.site.etc.LoginSecurity;
+import com.spring.site.etc.LoginSecurityService;
 import com.spring.site.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 
@@ -34,5 +42,22 @@ public class MemberController {
         return "/member/memberList";
     }
 
+    @GetMapping("/myPage")
+        public String myPage(Authentication authentication, Model model) {
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        model.addAttribute("member", userDetails);
+        return "/member/myPage";
+        }
+
+//    @PostMapping("/myPage")
+//    public String userEdit(Member form, BindingResult result, Member currentMember) {
+//        if(result.hasErrors()) {
+//            return "redirect:/member/myPage";
+//        }
+//
+//        currentMember.setPw(form.getPw());
+//        currentMember.setName(form.getName());
+//        return "redirect:/member/myPage";
+//    }
 
 }
