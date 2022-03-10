@@ -60,4 +60,10 @@ public class BoardController {
         model.addAttribute("board", new Board());
         return "/board/insert";
     }
+    @GetMapping("/detail")
+    public String detail(int no,Model model) throws Exception  {
+
+        Board inBoard = boardService.detailSearch(no);
+        return "/board/detail";
+    }
 }

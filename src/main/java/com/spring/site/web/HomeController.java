@@ -16,7 +16,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("시큐리티"+SecurityContextHolder.getContext().getAuthentication().getPrincipal());
         return "home";
     }
     @PostMapping("tokenCheck")

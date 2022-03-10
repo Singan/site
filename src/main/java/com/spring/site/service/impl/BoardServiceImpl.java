@@ -30,4 +30,10 @@ public class BoardServiceImpl implements BoardService {
     public void insert(Board board) throws Exception {
         boardMapper.insert(board);
     }
+
+    @Override
+    public Board detailSearch(int no) throws Exception {
+        return boardMapper.detailSearch(no);
+    }
+
 }
