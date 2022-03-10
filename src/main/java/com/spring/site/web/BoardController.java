@@ -63,7 +63,8 @@ public class BoardController {
     @GetMapping("/detail")
     public String detail(int no,Model model) throws Exception  {
         System.out.println("디테일no 확인" + no);
-        Board inBoard = boardService.detailBoard(no);
+        Board board = boardService.detailBoard(no);
+        model.addAttribute("board",board);
         return "/board/detail";
     }
 
