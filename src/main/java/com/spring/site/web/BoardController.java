@@ -59,4 +59,6 @@ public class BoardController {
         model.addAttribute("board", new Board());
         return "/board/insert";
     }
+
+
 }
