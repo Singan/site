@@ -21,7 +21,7 @@
             </thead>
             <tbody>
             <tr th:each="board : ${list}">
-                <a th:href="./board/detail?no=${board.no}">
+                <a th:href="@{/board/detail(no=${board.no})}">
                 <td th:text="${board.no}"></td>
                 <td th:text="${board.writer}"></td>
                 <td th:text="${board.title}"></td>
