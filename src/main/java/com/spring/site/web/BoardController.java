@@ -62,7 +62,7 @@ public class BoardController {
     }
     @GetMapping("/detail")
     public String detail(int no,Model model) throws Exception  {
-
+        System.out.println("디테일no 확인" + no);
         Board inBoard = boardService.detailSearch(no);
         return "/board/detail";
     }
