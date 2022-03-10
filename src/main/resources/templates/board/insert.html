@@ -1,11 +1,14 @@
 <!DOCTYPE HTML>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: headFragment">
+    <div th:replace="fragments/header :: header"></div>
+</head>
 <body>
 <h2> 게시글 작성 </h2>
 
 <div class="container">
-    <form action="/board/insert.do" method="post" th:object="${board}">
+    <form action="/board/insert" method="post" th:object="${board}">
         <div class="form-group">
             <label for="subject">제목</label>
             <input type="text" class="form-control" id="subject" name="subject" th:field="*{title}" placeholder="제목을 입력하세요.">

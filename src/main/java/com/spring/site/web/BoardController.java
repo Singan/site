@@ -6,6 +6,7 @@ import com.spring.site.etc.LoginSecurity;
 import com.spring.site.service.BoardService;
 import com.spring.site.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,7 @@ public class BoardController {
     @Autowired
     BoardService boardService;
     String dir = "/board";
-    @GetMapping("/list.do")
+    @GetMapping("/list")
     public String list(Model model) throws Exception  {
         List<Board> bl = boardService.list();
         model.addAttribute("list",bl);
@@ -36,11 +37,11 @@ public class BoardController {
         return "/board/list";
     }
     // board writer , title,file , date,content
-    @PostMapping("/insert.do")
-    public String insert(Board board) throws Exception  {
-        LoginSecurity log = (LoginSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Board inBoard = new Board();
+    @PostMapping("/insert")
+    public String insert(Board board,@AuthenticationPrincipal
+            LoginSecurity log) throws Exception  {
         Member member = log.getMember();
+        Board inBoard = new Board();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate lDate = LocalDate.now();
         inBoard.setWriter(member.getNo());
@@ -51,9 +52,9 @@ public class BoardController {
         System.out.println("보드 인설트 확인");
         System.out.println(inBoard.toString());
         boardService.insert(inBoard);
-        return "redirect:/board/list.do";
+        return "redirect:/board/list";
     }
-    @GetMapping("/insert.do")
+    @GetMapping("/insert")
     public String goInsert(Model model) {
 
         model.addAttribute("board", new Board());
