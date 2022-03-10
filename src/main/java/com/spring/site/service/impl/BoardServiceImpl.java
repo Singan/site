@@ -32,7 +32,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Board detailSearch(int no) throws Exception {
+    public Board detailBoard(int no) throws Exception {
         return boardMapper.detailSearch(no);
     }
 
