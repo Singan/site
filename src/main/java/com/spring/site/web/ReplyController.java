@@ -19,6 +19,7 @@ public class ReplyController {
     private String string() {
         Reply replyDto = new Reply();
         replyService.add(replyDto);
+        // push test
         return "redirect:/board/detail?no=";
     }
 
