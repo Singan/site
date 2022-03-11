@@ -6,6 +6,7 @@ import com.spring.site.etc.LoginSecurity;
 import com.spring.site.service.BoardService;
 import com.spring.site.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,8 +38,8 @@ public class BoardController {
     }
     // board writer , title,file , date,content
     @PostMapping("/insert")
-    public String insert(Board board) throws Exception  {
-        LoginSecurity log = (LoginSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String insert( @AuthenticationPrincipal LoginSecurity log,Board board) throws Exception  {
+
         Board inBoard = new Board();
         Member member = log.getMember();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -64,6 +65,7 @@ public class BoardController {
     public String detail(int no,Model model) throws Exception  {
         System.out.println("디테일no 확인" + no);
         Board board = boardService.detailBoard(no);
+        System.out.println(board.toString());
         model.addAttribute("board",board);
         return "/board/detail";
     }

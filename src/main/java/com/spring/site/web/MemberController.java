@@ -44,8 +44,9 @@ public class MemberController {
 
     @GetMapping("/myPage")
         public String myPage(Authentication authentication, Model model) {
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        LoginSecurity userDetails = (LoginSecurity) authentication.getPrincipal();
         model.addAttribute("member", userDetails);
+        System.out.println(userDetails);
         return "/member/myPage";
         }
 
