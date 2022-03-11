@@ -12,39 +12,96 @@
 
         <div class="form-group">
             <label th:for="id">번호</label>
-            <input type="text" class="form-control" th:field="*{board.no}" th:readonly="readonly" >
+            <input type="text" class="form-control" th:field="${board.no}" th:readonly="readonly" >
         </div>
 
         <div class="form-group">
-            <label th:for="pw">제목</label>
-            <input type="text" class="form-control" th:field="*{board.title}" th:readonly="readonly">
+            <label th:for="title">제목</label>
+            <input type="text" class="form-control" th:field="${board.title}" th:readonly="readonly">
         </div>
 
         <div class="form-group">
-            <label th:for="name">내용</label>
-            <input type="text" class="form-control" th:field="*{board.content}" th:readonly="readonly" >
+            <label th:for="content">내용</label>
+            <input type="text" class="form-control" th:field="${board.content}" th:readonly="readonly" >
         </div>
 
         <div class="form-group">
-            <label th:for="name">파일</label>
-            <input type="text" class="form-control" th:field="*{board.file}" th:readonly="readonly" >
+            <label th:for="file">파일</label>
+            <input type="text" class="form-control" th:field="${board.file}" th:readonly="readonly" >
         </div>
 
         <div class="form-group">
-            <label th:for="name">작성자</label>
-            <input type="text" class="form-control" th:field="*{board.writer}" th:readonly="readonly" >
+            <label th:for="writer">작성자</label>
+            <input type="text" class="form-control" th:field="${board.writer}" th:readonly="readonly" >
         </div>
 
         <div class="form-group">
             <label th:for="name">날짜</label>
-            <input type="text" class="form-control" th:field="*{board.date}" th:readonly="readonly" >
+            <input type="text" class="form-control" th:field="${board.date}" th:readonly="readonly" >
         </div>
+
 
 
         <button type="submit" class="btn btn-primary">수정</button>
     </form>
+
+        <div class="card my-4">
+            <h5 class="card-header">댓글 :</h5>
+            <div class="card-body">
+                <form name="comment-form" action="/board/reply/write" method="post" autocomplete="off">
+                    <div class="form-group">
+                        <input type="hidden" name="bno" th:value="*{bno}" />
+                        <textarea name="content" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">댓글 등록</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card my-4">
+            <h5 class="card-header">댓글 리스트</h5>
+            <ul id="comment-items" class="list-group">
+               <li id="getReplyList" class="list-group-item">
+                   <div>댓글 내용</div>
+                   <div class="d-flex">
+                       <div>작성자 : </div>
+                       <button class="badge">삭제</button>
+                   </div>
+               </li>
+            </ul>
+        </div>
+    <div>
+
+    </div>
 </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        getReplyList();
+    })
+
+    function getReplyList() {
+        var bno = $('input[name=bno]').val();
+        $.ajax({
+            type: 'GET',
+            url: '/getReplyList',
+            data : {bno},
+            success: function(result) {
+                console.log(result);
+                for(var i = 0; i < result.length; i++) {
+                    var str = "<div class = \"reply"\>"
+                    str += result[i].reply+"</div></hr>"
+                    $("#reply").append(str);
+                }
+            },
+            error : function(result) {
+            },
+            complete: function() {
+            }
+        })
+    }
+</script>
 
 </body>
 </html>

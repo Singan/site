@@ -32,7 +32,16 @@ public class BoardController {
         List<Board> bl = boardService.list();
         model.addAttribute("list",bl);
         System.out.println("보드 리스트 확인");
-
+//        for(int i = 1;i<=24;i++){
+//            Board board = new Board();
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//            LocalDate lDate = LocalDate.now();
+//            board.setTitle("번호"+i+"DB복사");
+//            board.setContent("내 번호" + i);
+//            board.setWriter(i/2);
+//            board.setDate(lDate.format(formatter));
+//            boardService.insert(board);
+//        }
         return "/board/list";
     }
     // board writer , title,file , date,content
