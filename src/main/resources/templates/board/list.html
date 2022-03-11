@@ -7,7 +7,7 @@
 <body>
 <div class="container">
     <header>
-        <h1>회원 목록</h1>
+        <h1>글 목록</h1>
     </header>
     <div>
         <table class="table-hover">
@@ -28,6 +28,9 @@
                 <td th:text="${board.date}"></td>
                 </a>
             </tr>
+            <th:block th:each="num: ${#numbers.sequence(1,boardCount)}">
+                <a th:text="${num}" th:href="@{/board/list(no=${num})}"> </a>
+            </th:block>
             </tbody>
         </table>
     </div>

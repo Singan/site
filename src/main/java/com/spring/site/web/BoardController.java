@@ -1,6 +1,7 @@
 package com.spring.site.web;
 
 import com.spring.site.domain.Board;
+import com.spring.site.domain.Criteria;
 import com.spring.site.domain.Member;
 import com.spring.site.etc.LoginSecurity;
 import com.spring.site.service.BoardService;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,11 +31,14 @@ public class BoardController {
     BoardService boardService;
     String dir = "/board";
     @GetMapping("/list")
-    public String list(Model model) throws Exception  {
-        List<Board> bl = boardService.list();
+    public String list(Model model,@RequestParam(defaultValue = "1") int no) throws Exception  {
+        Criteria criteria = new Criteria(no);
+        criteria.setCurrentPageNo(no);
+        List<Board> bl = boardService.list(criteria);
         model.addAttribute("list",bl);
         System.out.println("보드 리스트 확인");
-
+        int boardCount = (boardService.countBoard()+9)/criteria.getRecordsPerPage();
+        model.addAttribute("boardCount",boardCount);
         return "/board/list";
     }
     // board writer , title,file , date,content
