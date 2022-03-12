@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Reply {
     private int rno;
-    private int bno;
+    private int no;
     private String reply;
     private String writer;
     private String replyDate;

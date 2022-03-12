@@ -8,6 +8,8 @@ import com.spring.site.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class ReplyServiceimpl implements ReplyService {
@@ -21,9 +23,10 @@ public class ReplyServiceimpl implements ReplyService {
     }
 
     @Override
-    public Reply get(int rno) {
-        return replyMapper.read(rno);
+    public List<Reply> get(int no) {
+        return replyMapper.read(no);
     }
+
 
     @Override
     public int modify(Reply reply) {
