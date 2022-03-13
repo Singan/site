@@ -1,4 +1,4 @@
-package com.spring.site.web.filter;
+package com.spring.site.etc.filter;
 
 
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;

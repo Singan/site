@@ -35,7 +35,6 @@ public class AuthenticationEntryPointHandler implements AuthenticationEntryPoint
 
 
     private void setResponse(HttpServletResponse response, ErrorCoded errorCode) throws IOException {
-        System.out.println("여긴 언제오노");
         response.setContentType("application/json;charset=UTF-8");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.getWriter().println("{ \"message\" : \"" + errorCode.getMessage()

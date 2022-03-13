@@ -1,11 +1,9 @@
-package com.spring.site.etc;
+package com.spring.site.etc.security.login;
 
 import com.spring.site.domain.Member;
 import com.spring.site.mapper.MemberMapper;
-import com.spring.site.service.MemberService;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

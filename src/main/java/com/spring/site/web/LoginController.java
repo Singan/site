@@ -1,8 +1,7 @@
 package com.spring.site.web;
 
 import com.spring.site.domain.Member;
-import com.spring.site.etc.LoginSecurity;
-import com.spring.site.etc.LoginSecurityService;
+import com.spring.site.etc.security.login.LoginSecurityService;
 import com.spring.site.etc.token.TokenProvider;
 import com.spring.site.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +15,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 @Controller
 public class LoginController {
