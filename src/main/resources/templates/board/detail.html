@@ -16,22 +16,22 @@
         </div>
 
         <div class="form-group">
-            <label th:for="pw">제목</label>
+            <label th:for="title">제목</label>
             <input type="text" class="form-control" th:field="${board.title}" th:readonly="readonly">
         </div>
 
         <div class="form-group">
-            <label th:for="name">내용</label>
+            <label th:for="content">내용</label>
             <input type="text" class="form-control" th:field="${board.content}" th:readonly="readonly" >
         </div>
 
         <div class="form-group">
-            <label th:for="name">파일</label>
+            <label th:for="file">파일</label>
             <input type="text" class="form-control" th:field="${board.file}" th:readonly="readonly" >
         </div>
 
         <div class="form-group">
-            <label th:for="name">작성자</label>
+            <label th:for="writer">작성자</label>
             <input type="text" class="form-control" th:field="${board.writer}" th:readonly="readonly" >
         </div>
 
@@ -41,10 +41,70 @@
         </div>
 
 
+
         <button type="submit" class="btn btn-primary">수정</button>
     </form>
+
+        <div class="card my-4">
+            <h5 class="card-header">댓글 :</h5>
+            <div class="card-body">
+                <form name="commentInsertForm" action="/reply/insert" method="post">
+                    <div class="form-group">
+                        <input type="hidden" name="no" th:value="${board.no}" />
+                        <textarea name="reply" id="reply" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit">등록</button>
+
+                </form>
+            </div>
+        </div>
+<!--        <div class="container">-->
+<!--            <div class="commentList"></div>-->
+<!--        </div>-->
+
+        <div class="card my-4">
+            <h5 class="card-header">댓글 리스트</h5>
+            <div class="container">
+                <div class="commentList"></div>
+            </div>
+        </div>
+    <div>
+
+    </div>
 </div>
 </div>
+
+<script>
+
+$(document).ready(function() {
+    commentList();
+})
+
+function commentList(){
+    var no = $('input[name=no]').val();
+    $.ajax({
+        url : '/reply/list',
+        type : 'GET',
+        data : {no},
+        success : function(data){
+            console.log(data);
+            for (var i = 0; i<result.length; i++) {
+                var str = "<div class=\"reply"\>"
+                str += result[i].reply+"</div></hr>"
+                $(#reply).append(str);
+            }
+        },
+        error: function(result) {
+        },
+        complete: function() {
+        }
+    })
+}
+
+
+</script>
+
 
 </body>
 </html>
