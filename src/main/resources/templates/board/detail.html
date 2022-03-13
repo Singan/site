@@ -48,7 +48,7 @@
         <div class="card my-4">
             <h5 class="card-header">댓글 :</h5>
             <div class="card-body">
-                <form name="commentInsertForm" action="/reply/insert" method="post">
+                <form name="comment-form" action="/reply/insert" method="post">
                     <div class="form-group">
                         <input type="hidden" name="no" th:value="${board.no}" />
                         <textarea name="reply" id="reply" class="form-control" rows="3"></textarea>
@@ -59,45 +59,49 @@
                 </form>
             </div>
         </div>
-<!--        <div class="container">-->
-<!--            <div class="commentList"></div>-->
-<!--        </div>-->
 
         <div class="card my-4">
             <h5 class="card-header">댓글 리스트</h5>
-            <div class="container">
                 <div class="commentList"></div>
-            </div>
         </div>
     <div>
 
     </div>
 </div>
 </div>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script th:inline="javascript">
 
-<script>
+
 
 $(document).ready(function() {
     commentList();
-})
+});
 
 function commentList(){
     var no = $('input[name=no]').val();
+    var str = ""
     $.ajax({
         url : '/reply/list',
         type : 'GET',
         data : {no},
-        success : function(data){
-            console.log(data);
-            for (var i = 0; i<result.length; i++) {
-                var str = "<div class=\"reply"\>"
-                str += result[i].reply+"</div></hr>"
-                $(#reply).append(str);
+        success : function(result){
+            console.log(result);
+            for (var i = 0; i < result.length; i++) {
+                   str += "<div class=\"commentInfo\">" +'댓글 번호 :' +result[i].rno+"</div></hr>"
+                   str += "<div class=\"commentInfo\">"  +'댓글 작성자 :' +result[i].writer+"</div></hr>"
+                   str += "<div class=\"commentInfo\">"  +'작성 날짜 :' +result[i].replyDate+"</div></hr>"
+                   str += "<div class=\"commentList\">" +'내용 :' +result[i].reply+"</div></hr>"
+                      str += "<div class=\"commentInfo\">"  +'작성 날짜 :' +result[i].replyDate+"</div></hr>"
+
             }
+
         },
         error: function(result) {
+           alert(result);
         },
         complete: function() {
+          $(".commentList").html(str)
         }
     })
 }

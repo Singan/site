@@ -13,9 +13,9 @@ import java.util.List;
 public interface ReplyMapper {
 
     @Options(useGeneratedKeys = true, keyProperty = "rno")
-    @Insert("INSERT INTO reply(rno,no,reply,writer) VALUES(#{rno}, #{no},#{reply},#{writer})")
+    @Insert("INSERT INTO reply(rno,no,reply,writer,replyDate) VALUES(#{rno}, #{no},#{reply},#{writer},now())")
     int insert(Reply reply);
-    @Select("SELECT * FROM reply where NO = #{no}")
+    @Select("SELECT * FROM reply where no = #{no}")
     List<Reply> read(int bno);
     @Update("UPDATE * FROM reply SET reply = #{reply} where rno = #{rno}")
     int update(Reply reply);

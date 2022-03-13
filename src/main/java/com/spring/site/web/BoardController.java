@@ -2,9 +2,11 @@ package com.spring.site.web;
 
 import com.spring.site.domain.Board;
 import com.spring.site.domain.Member;
+import com.spring.site.domain.Reply;
 import com.spring.site.etc.LoginSecurity;
 import com.spring.site.service.BoardService;
 import com.spring.site.service.MemberService;
+import com.spring.site.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,8 @@ import java.util.List;
 public class BoardController {
     @Autowired
     BoardService boardService;
+    @Autowired
+    ReplyService replyService;
     String dir = "/board";
     @GetMapping("/list")
     public String list(Model model) throws Exception  {

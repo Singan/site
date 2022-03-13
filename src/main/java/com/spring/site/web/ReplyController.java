@@ -1,5 +1,6 @@
 package com.spring.site.web;
 
+import com.spring.site.domain.Member;
 import com.spring.site.domain.Reply;
 import com.spring.site.service.MemberService;
 import com.spring.site.service.ReplyService;
@@ -30,9 +31,11 @@ public class ReplyController {
 
     @GetMapping("/list")
     @ResponseBody
-    private List<Reply> mCommentServiceList(@RequestParam("no") int no) throws Exception{
+    private List<Reply> commentList(@RequestParam int no, Model model) throws Exception{
         Reply reply = new Reply();
+        List<Reply> list = replyService.get(no);
         reply.setNo(no);
+        model.addAttribute("list", list);
         return replyService.get(no);
     }
 
