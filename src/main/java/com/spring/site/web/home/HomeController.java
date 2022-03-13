@@ -1,4 +1,4 @@
-package com.spring.site.web;
+package com.spring.site.web.home;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;

@@ -1,4 +1,4 @@
-package com.spring.site.web;
+package com.spring.site.web.home;
 
 import com.spring.site.domain.Member;
 import com.spring.site.etc.LoginSecurity;
