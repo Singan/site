@@ -1,6 +1,7 @@
 package com.spring.site.service.impl;
 
 import com.spring.site.domain.Board;
+import com.spring.site.domain.Criteria;
 import com.spring.site.domain.Member;
 import com.spring.site.mapper.BoardMapper;
 import com.spring.site.mapper.MemberMapper;
@@ -17,8 +18,8 @@ public class BoardServiceImpl implements BoardService {
 
 
     @Override
-    public List<Board> list() throws Exception {
-        return boardMapper.list();
+    public List<Board> list(Criteria criteria) throws Exception {
+        return boardMapper.list(criteria);
     }
 
     @Override
@@ -34,6 +35,11 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public Board detailBoard(int no) throws Exception {
         return boardMapper.detailSearch(no);
+    }
+
+    @Override
+    public int countBoard() {
+        return boardMapper.countBoard();
     }
 
 }

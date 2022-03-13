@@ -5,32 +5,58 @@
     <div th:replace="fragments/header :: header"></div>
 </head>
 <body>
+<style>
+    .container{
+        width:50%;
+    }
+    .container *{
+        display:inline;
+        text-aling:center;
+    }
+    .board{
+        width:40%;
+    }
+    .board >a>*{
+        width:20%;
+    }
+</style>
 <div class="container">
     <header>
-        <h1>회원 목록</h1>
+        <h1>글 목록</h1>
     </header>
+    <br>
     <div>
-        <table class="table-hover">
-            <thead>
-            <tr>
-                <th>번호</th>
-                <th>글쓴이</th>
-                <th>제목</th>
-                <th>날짜</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="board : ${list}">
-                <a th:href="@{/board/detail(no=${board.no})}">
-                <td th:text="${board.no}"></td>
-                <td th:text="${board.writer}"></td>
-                <td th:text="${board.title}"></td>
-                <td th:text="${board.date}"></td>
-                </a>
-            </tr>
-            </tbody>
-        </table>
+        <div >
+            <div class="board">
+                <div>
+                    <div>번호</div>
+                    <div>글쓴이</div>
+                    <div>제목</div>
+                    <div>날짜</div>
+                </div>
+            </div>
+            <br>
+            <div>
+                <div th:each="board : ${list}" class="board">
+                    <a th:href="@{/board/detail(no=${board.no})}">
+                        <div th:text="${board.no}"></div>
+                        <div th:text="${board.writer}"></div>
+                        <div th:text="${board.title}"></div>
+                        <div th:text="${board.date}"></div>
+                    </a>
+                    <br>
+                </div>
+            </div>
+            <th:block th:each="num: ${#numbers.sequence(1,boardCount)}">
+                <a th:text="${num}" th:href="@{/board/list(no=${num})}"> </a>
+            </th:block>
+        </div>
     </div>
 </div> <!-- /container -->
 </body>
+<script>
+    $("a").on("click",function(){
+        console.log(테스트)
+    })
+</script>
 </html>

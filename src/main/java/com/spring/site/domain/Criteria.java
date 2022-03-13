@@ -16,20 +16,13 @@ public class Criteria {
     /** 화면 하단에 출력할 페이지 사이즈 */
     private int pageSize;
 
-    /** 검색 키워드 */
-    private String searchKeyword;
-
-    /** 검색 유형 */
-    private String searchType;
-
-    public Criteria() {
-        this.currentPageNo = 1;
+    private int recordsStart;
+    public Criteria(int currentPageNo) {
+        this.currentPageNo = currentPageNo;
         this.recordsPerPage = 10;
         this.pageSize = 10;
+        this.recordsStart = (currentPageNo - 1) * recordsPerPage;
     }
 
-    public int getStartPage() {
-        return (currentPageNo - 1) * recordsPerPage;
-    }
 
 }

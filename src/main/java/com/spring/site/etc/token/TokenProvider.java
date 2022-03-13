@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -56,19 +57,18 @@ public class TokenProvider {
     }
 
     public String resolveToken(HttpServletRequest request) {
-//        Enumeration headerNames = request.getHeaderNames();
-//        while(headerNames.hasMoreElements()) {
-//            String name = (String)headerNames.nextElement();
-//            String value = request.getHeader(name);
-//            System.out.println(name + " : " + value + "<br>");
-//        }
+        Enumeration headerNames = request.getHeaderNames();
+        while(headerNames.hasMoreElements()) {
+            String name = (String)headerNames.nextElement();
+            String value = request.getHeader(name);
+            System.out.println(name + " : " + value + "<br>");
+        }
         System.out.println("헤더전체");
-        System.out.println("request:"+request.getHeader("cookie"));
+        System.out.println("request:"+request.getHeader("Authorization"));
 
         if(request.getHeader("cookie") == null){
             return null;
         }
-
         return request.getHeader("cookie").substring(6);
 
     }
@@ -82,6 +82,7 @@ public class TokenProvider {
         } catch (MalformedJwtException e) {
             System.out.println("jwt 올바르게 구성 x");
         } catch (ExpiredJwtException e) {
+            SecurityContextHolder.clearContext();
             System.out.println("jwt 기간 종료");
         } catch (UnsupportedJwtException e) {
             System.out.println("jwt 형식이 다름");

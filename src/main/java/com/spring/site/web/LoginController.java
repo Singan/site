@@ -66,17 +66,14 @@ public class LoginController {
         System.out.println(SecurityContextHolder.getContext().getAuthentication());
         System.out.println("토큰 확인용");
         String token = tokenProvider.createToken(userDetails);
-        response.setHeader("token",token);
+        response.addHeader("Authorization",token);
         Cookie cookie = new Cookie("token", token);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setSecure(true);
         cookie.setMaxAge(1000 * 60 * 60);
         response.addCookie(cookie);
-
-        System.out.println(token);
-        System.out.println(cookie);
-
+        System.out.println("토큰 로그인 " +response.getHeaders("Authorization"));
         return "redirect:/home";
     }
 
@@ -117,7 +114,9 @@ public class LoginController {
         cookie.setSecure(false);
         cookie.setMaxAge(0);
         cookie.setPath("/");
+
         response.addCookie(cookie);
+        SecurityContextHolder.clearContext();
         System.out.println(cookie);
         System.out.println("로그아웃 성공");
         return "redirect:/";

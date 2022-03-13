@@ -60,22 +60,22 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated() // 나머지 요청들은 권한의 종류에 상관 없이 권한이 있어야 접근 가능
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .formLogin().disable()
-//                .loginPage("/loginForm") // 로그인 페이지 링크
+                .headers().frameOptions().disable().and()
+                .formLogin()//.disable()
+                .loginPage("/loginForm") // 로그인 페이지 링크
 //                .loginProcessingUrl("/login") //로그인 동작
-//                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/")
 //                .usernameParameter("id")
 //                .passwordParameter("pw")
 //                .successHandler(loginSuccessHandler)
 //                .failureHandler(loginCheckFilter)
-//                .permitAll()
-//                .and()
+                .permitAll()
+                .and()
 //                .rememberMe()
 //                .key("rememberMe")
 //                .userDetailsService(loginSecurityService)
 //                .and()
                 .logout() // 8
-                .deleteCookies("JSESSIONID")
                 .logoutUrl("/home")
                 .logoutSuccessUrl("/") // 로그아웃 성공시 리다이렉트 주소
                 .invalidateHttpSession(true) // 세션 날리기
