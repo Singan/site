@@ -1,11 +1,12 @@
-package com.spring.site.etc;
+package com.spring.site.etc.security;
 
 
+import com.spring.site.etc.security.login.LoginAuthProvider;
+import com.spring.site.etc.security.login.LoginSecurityService;
 import com.spring.site.etc.token.TokenFilter;
 import com.spring.site.etc.token.TokenProvider;
-import com.spring.site.web.filter.LoginSuccessHandler;
-import com.spring.site.web.filter.LoginFailHandler;
-import lombok.RequiredArgsConstructor;
+import com.spring.site.etc.filter.LoginSuccessHandler;
+import com.spring.site.etc.filter.LoginFailHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

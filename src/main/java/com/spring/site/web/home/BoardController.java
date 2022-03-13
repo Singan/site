@@ -3,10 +3,8 @@ package com.spring.site.web.home;
 import com.spring.site.domain.Board;
 import com.spring.site.domain.Criteria;
 import com.spring.site.domain.Member;
-import com.spring.site.domain.Reply;
-import com.spring.site.etc.LoginSecurity;
+import com.spring.site.etc.security.login.LoginSecurity;
 import com.spring.site.service.BoardService;
-import com.spring.site.service.MemberService;
 import com.spring.site.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,12 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 @Controller

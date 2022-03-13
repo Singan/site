@@ -1,4 +1,4 @@
-package com.spring.site.etc;
+package com.spring.site.etc.security.login;
 
 import com.spring.site.domain.Member;
 import lombok.Builder;
