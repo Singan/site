@@ -33,9 +33,7 @@ public class ReplyController {
     @ResponseBody
     private List<Reply> commentList(@RequestParam int no, Model model) throws Exception{
         Reply reply = new Reply();
-        List<Reply> list = replyService.get(no);
         reply.setNo(no);
-        model.addAttribute("list", list);
         return replyService.get(no);
     }
 
