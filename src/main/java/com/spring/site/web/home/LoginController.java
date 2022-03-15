@@ -62,7 +62,7 @@ public class LoginController {
         System.out.println(SecurityContextHolder.getContext().getAuthentication());
         System.out.println("토큰 확인용");
         String token = tokenProvider.createToken(userDetails);
-        response.addHeader("Authorization",token);
+        response.addHeader("Authorization bearer",token);
         Cookie cookie = new Cookie("token", token);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
