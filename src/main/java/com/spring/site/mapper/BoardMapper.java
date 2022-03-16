@@ -22,7 +22,6 @@ public interface BoardMapper {
     List<Board> searchList(Member member);
     @Select("SELECT * FROM board where no = #{no}")
     Board detailSearch(int no);
-
     @Select("SELECT count(*) FROM board")
     int countBoard();
 }

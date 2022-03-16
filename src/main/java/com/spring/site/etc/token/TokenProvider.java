@@ -50,12 +50,12 @@ public class TokenProvider {
     }
 
     public String resolveToken(HttpServletRequest request) {
-        Enumeration headerNames = request.getHeaderNames();
-        while(headerNames.hasMoreElements()) {
-            String name = (String)headerNames.nextElement();
-            String value = request.getHeader(name);
-            System.out.println(name + " : " + value + "<br>");
-        }
+//        Enumeration headerNames = request.getHeaderNames();
+//        while(headerNames.hasMoreElements()) {
+//            String name = (String)headerNames.nextElement();
+//            String value = request.getHeader(name);
+//            System.out.println(name + " : " + value + "<br>");
+//        }
         System.out.println("헤더전체");
         System.out.println("request:"+request.getHeader("Authorization"));
 
