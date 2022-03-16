@@ -48,7 +48,7 @@ public class BoardController {
         LocalDate lDate = LocalDate.now();
         inBoard.setWriter(member.getNo());
         inBoard.setTitle(board.getTitle());
-        inBoard.setContent(board.getFile());
+        inBoard.setFile(board.getFile());
         inBoard.setContent(board.getContent());
         inBoard.setDate(lDate.format(formatter));
         System.out.println("보드 인설트 확인");
