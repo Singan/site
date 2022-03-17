@@ -46,11 +46,8 @@ public class BoardController {
         Member member = log.getMember();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate lDate = LocalDate.now();
-        inBoard.setWriter(member.getNo());
-        inBoard.setTitle(board.getTitle());
-        inBoard.setFile(board.getFile());
-        inBoard.setContent(board.getContent());
-        inBoard.setDate(lDate.format(formatter));
+        board.setWriter(member.getMNo());
+        board.setDate(lDate.format(formatter));
         System.out.println("보드 인설트 확인");
         System.out.println(inBoard.toString());
         boardService.insert(inBoard);

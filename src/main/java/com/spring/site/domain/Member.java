@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Member {
 
-    private int no;
+    private int mNo;
     @NotBlank(message = "아이디를 입력해주세요.")
     @Pattern(regexp = "[a-zA-Z0-9]{2,9}",
             message = "아이디는 영문, 숫자만 가능하며 2 ~ 10자리까지 가능합니다.")
@@ -26,12 +26,12 @@ public class Member {
     private String name;
     private String role = "ROLE_ADMIN";
 
-    public int getNo() {
-        return no;
+    public int getMNo() {
+        return mNo;
     }
 
     public void setNo(int no) {
-        this.no = no;
+        this.mNo = mNo;
     }
 
     public String getId() { return id; }
@@ -68,7 +68,7 @@ public class Member {
     @Override
     public String toString() {
         return "Member{" +
-                "no=" + no +
+                "no=" + mNo +
                 ", id='" + id + '\'' +
                 ", pw='" + pw + '\'' +
                 ", name='" + name + '\'' +
@@ -76,8 +76,8 @@ public class Member {
                 '}';
     }
 
-    public Member(int no, String id, String pw, String name, String role) {
-        this.no = no;
+    public Member(int mNo, String id, String pw, String name, String role) {
+        this.mNo = mNo;
         this.id = id;
         this.pw = pw;
         this.name = name;
