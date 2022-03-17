@@ -42,15 +42,16 @@ public class BoardController {
     @PostMapping("/insert")
     public String insert(Board board) throws Exception  {
         LoginSecurity log = (LoginSecurity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Board inBoard = new Board();
+
         Member member = log.getMember();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate lDate = LocalDate.now();
         board.setWriter(member.getMNo());
         board.setDate(lDate.format(formatter));
         System.out.println("보드 인설트 확인");
-        System.out.println(inBoard.toString());
-        boardService.insert(inBoard);
+
+        boardService.insert(board);
+        System.out.println(board);
         return "redirect:/board/list";
     }
     @GetMapping("/insert")

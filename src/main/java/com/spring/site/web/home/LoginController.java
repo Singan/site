@@ -93,6 +93,7 @@ public class LoginController {
         m.setName(member.getName());
         m.setEmail("Ddd");
         m.setPhone("01022214906");
+
         System.out.println("add");
         memberService.add(m);
 
