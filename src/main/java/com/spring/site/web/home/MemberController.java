@@ -40,6 +40,11 @@ public class MemberController {
         return "/member/myPage";
         }
 
+    @GetMapping("/camping")
+    public String camping(Model model) throws Exception {
+        System.out.println("camping");
+        return "/member/camping";
+    }
 //    @PostMapping("/myPage")
 //    public String userEdit(Member form, BindingResult result, Member currentMember) {
 //        if(result.hasErrors()) {
