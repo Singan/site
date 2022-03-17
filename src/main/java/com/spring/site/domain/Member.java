@@ -7,8 +7,12 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 public class Member {
 
@@ -24,65 +28,10 @@ public class Member {
     @NotBlank(message = "이름을 입력해주세요.")
     @Size(min = 2, max = 8, message = "이름을 2~8자 사이로 입력해주세요.")
     private String name;
-    private String role = "ROLE_ADMIN";
-
-    public int getNo() {
-        return no;
-    }
-
-    public void setNo(int no) {
-        this.no = no;
-    }
-
-    public String getId() { return id; }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getPw() {
-        return pw;
-    }
-
-    public void setPw(String pw) {
-        this.pw = pw;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Member{" +
-                "no=" + no +
-                ", id='" + id + '\'' +
-                ", pw='" + pw + '\'' +
-                ", name='" + name + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
-
-    public Member(int no, String id, String pw, String name, String role) {
-        this.no = no;
-        this.id = id;
-        this.pw = pw;
-        this.name = name;
-        this.role = role;
-    }
+    private String email;
+    private String phone;
+    private Date registerDay;
+    private String role = "ROLE_USER";
 
 
 }

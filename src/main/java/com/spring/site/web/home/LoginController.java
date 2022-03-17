@@ -91,6 +91,8 @@ public class LoginController {
         m.setId(member.getId());
         m.setPw((member.getPw()));
         m.setName(member.getName());
+        m.setEmail("Ddd");
+        m.setPhone("01022214906");
         System.out.println("add");
         memberService.add(m);
 
