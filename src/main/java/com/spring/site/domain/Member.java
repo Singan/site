@@ -15,6 +15,7 @@ import java.util.List;
 public class Member {
 
     private int mNo;
+
     @NotBlank(message = "아이디를 입력해주세요.")
     @Pattern(regexp = "[a-zA-Z0-9]{2,9}",
             message = "아이디는 영문, 숫자만 가능하며 2 ~ 10자리까지 가능합니다.")
@@ -28,8 +29,8 @@ public class Member {
     private String name;
     private String email;
     private String phone;
+    private String profile;
     private Date registerDay;
     private String role = "ROLE_USER";
-    private String profile;
 
 }
