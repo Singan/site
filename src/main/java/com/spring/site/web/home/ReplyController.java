@@ -31,6 +31,7 @@ public class ReplyController {
         reply2.setWriter(member.getId());
         replyService.add(reply2);
         String redirect = "redirect:/board/detail?no="+ Integer.toString(no);
+        System.out.println("댓글 작동 확인");
         return redirect;
     }
 
