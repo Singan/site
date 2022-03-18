@@ -19,6 +19,8 @@ public class MyBatisConfig {
         sqlSessionFactory.setDataSource(datasource);
         sqlSessionFactory.setTypeAliasesPackage("com.spring.site.mapper");
         return sqlSessionFactory.getObject();
+
+//
     }
 
     @Bean
