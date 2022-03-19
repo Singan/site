@@ -20,7 +20,6 @@ public class MyBatisConfig {
         sqlSessionFactory.setTypeAliasesPackage("com.spring.site.mapper");
         return sqlSessionFactory.getObject();
 
-//
     }
 
     @Bean
