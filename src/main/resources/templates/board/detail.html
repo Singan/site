@@ -71,40 +71,35 @@
 </div>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script th:inline="javascript">
+    $(document).ready(function() {
+        commentList();
+    });
 
-$(document).ready(function() {
-    commentList();
-});
+    function commentList(){
+        var no = $('input[name=no]').val();
+        var str = ""
+        $.ajax({
+            url : '/reply/list',
+            type : 'GET',
+            data : {no},
+            success : function(result){
+                console.log(result);
+                for (var i = 0; i < result.length; i++) {
+                       str += "<div class=\"commentInfo\">" +'댓글 번호 :' +result[i].rno+"</div></hr>"
+                       str += "<div class=\"commentInfo\">"  +'댓글 작성자 :' +result[i].writer+"</div></hr>"
+                       str += "<div class=\"commentInfo\">"  +'작성 날짜 :' +result[i].replyDate+"</div></hr>"
+                       str += "<div class=\"commentList\">" +'내용 :' +result[i].reply+"</div></hr>"
+                }
 
-function commentList(){
-    var no = $('input[name=no]').val();
-    var str = ""
-    $.ajax({
-        url : '/reply/list',
-        type : 'GET',
-        data : {no},
-        success : function(result){
-            console.log(result);
-            for (var i = 0; i < result.length; i++) {
-                   str += "<div class=\"commentInfo\">" +'댓글 번호 :' +result[i].rno+"</div></hr>"
-                   str += "<div class=\"commentInfo\">"  +'댓글 작성자 :' +result[i].writer+"</div></hr>"
-                   str += "<div class=\"commentInfo\">"  +'작성 날짜 :' +result[i].replyDate+"</div></hr>"
-                   str += "<div class=\"commentList\">" +'내용 :' +result[i].reply+"</div></hr>"
-
-
+            },
+            error: function(result) {
+               alert(result);
+            },
+            complete: function() {
+              $(".commentList").html(str)
             }
-
-        },
-        error: function(result) {
-           alert(result);
-        },
-        complete: function() {
-          $(".commentList").html(str)
-        }
-    })
-}
-
-
+        })
+    }
 </script>
 
 

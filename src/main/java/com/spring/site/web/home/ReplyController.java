@@ -37,9 +37,8 @@ public class ReplyController {
 
     @GetMapping("/list")
     @ResponseBody
-    private List<Reply> commentList(@RequestParam int no, Model model) throws Exception{
-        Reply reply = new Reply();
-        reply.setNo(no);
+    private List<Reply> commentList(@RequestParam int no) throws Exception{
+
         return replyService.get(no);
     }
 
