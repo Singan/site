@@ -9,13 +9,14 @@ import com.spring.site.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
+
 @Service
 public class BoardServiceImpl implements BoardService {
+
     @Autowired
     BoardMapper boardMapper;
-
 
     @Override
     public List<Board> list(Criteria criteria) throws Exception {
