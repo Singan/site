@@ -85,8 +85,6 @@ public class SpringSecurity extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(new TokenFilter(jwtToken),
                         UsernamePasswordAuthenticationFilter.class);
 
-        System.out.println("세큐리티 컨피규어 로그");
-
     }
 
     @Bean
