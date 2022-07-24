@@ -16,7 +16,7 @@ public interface ReplyMapper {
     @Insert("INSERT INTO reply(rno,no,reply,writer,replyDate) VALUES(#{rno}, #{no},#{reply},#{writer},now())")
     int insert(Reply reply);
     @Select("SELECT * FROM reply where no = #{no}")
-    List<Reply> read(int bno);
+    List<Reply> read(int no);
     @Update("UPDATE * FROM reply SET reply = #{reply} where rno = #{rno}")
     int update(Reply reply);
     @Delete("DELETE * FROM reply where rno = #{rno}")
