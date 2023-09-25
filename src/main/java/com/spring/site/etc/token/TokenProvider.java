@@ -57,7 +57,7 @@ public class TokenProvider {
 //            System.out.println(name + " : " + value + "<br>");
 //        }
         System.out.println("헤더전체");
-        System.out.println("request:"+request.getHeader("Authorization"));
+        System.out.println("request:"+request.getHeader("token"));
 
         if(request.getHeader("cookie") == null){
             return null;
